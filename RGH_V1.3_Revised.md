@@ -1,6 +1,6 @@
 # The Recursive Genesis Hypothesis
 ### A Philosophical Framework for Emergent Reality, with Empirical Findings to Date
-D.H. Yoo | 2026
+D.H. Yoo | July 2026
 
 *"A mind that seeks meaning, no matter how insignificant it seems to the grand scale of things, is a mind standing upon a universal structure that was built to create that exact moment."*
 
