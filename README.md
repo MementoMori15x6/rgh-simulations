@@ -6,19 +6,26 @@ Simulation-based testing of the Recursive Genesis Hypothesis (RGH) — a specula
 S_{t+1} = R(S_t) = P o A o E o T o D(S_t)
 ```
 
-This repo contains the actual code behind three findings documents. Each folder is self-contained with its own README (the full findings writeup) and the scripts that produced the reported numbers.
+**Full paper, with inline empirical-status notes for every axiom: [RGH_V1.3_Revised.md](https://github.com/MementoMori15x6/rgh-simulations/blob/main/RGH_V1.3_Revised.md)**
+
+This repo contains the actual code behind that paper's findings. Each folder below is self-contained with its own README (the full findings writeup for that line of testing) and the scripts that produced the reported numbers.
 
 ## Status at a glance
 
 | Component | Status |
 |---|---|
-| **Axiom 1 (Distinction)** | Supported — spontaneous, self-generated boundary formation confirmed both structurally and via a genuine information-theoretic causal-insulation test. See `axiom1-distinction/README.md`. |
-| **Axioms 2 & 3 (Transformation, Persistence)** | T is a framework choice, not a finding. P's general phenomenon (fixed rule -> enduring structure) is well-supported by 80 years of prior CA theory. RGH's *stronger* claim (active filtering against entropy) remains untested in one sense and *actively contradicted* in another — our own persistence filter, once finally given real teeth, made things die faster, not slower. See `axioms2-3-transformation-persistence/README.md`. |
-| **Exploitation/Adaptation (E/A)** | Five null/negative results on ungrounded (bit- or pattern-level) mechanisms, followed by one real, controlled positive result once a substrate with genuine conserved-energy thermodynamics was built: populations that learn to prefer mutualism over exploitation, based on real per-neighbor outcome tracking, show survival resilience matching populations that were cooperative from the start — far exceeding both fixed exploitation and unlearned random strategy-switching. See `ea-mutualism/README.md`. |
+| **Axiom 1 (Distinction)** | Supported |
+| **Axiom 2 (Transformation)** | Framework choice, not a finding |
+| **Axiom 3 (Persistence)** | General phenomenon supported (prior CA theory); active-filtering claim contradicted by first working test |
+| **Exploitation/Adaptation (E/A)** | Five nulls, then one controlled positive result under real thermodynamic stakes |
+
+See the paper linked above for the full reasoning behind each line, or the individual folder READMEs for full experimental detail.
 
 ## Folder structure
 
 ```
+RGH_V1.3_Revised.md                  <- the full paper
+
 axiom1-distinction/
   README.md                          <- full findings writeup
   stage1_grayscott.py                <- validated Gray-Scott substrate
