@@ -73,6 +73,10 @@ Bootstrap resampling (20 trials, 300 pairs each) confirmed this is a stable, non
 
 **Honest caveat:** BACKGROUND showed the *highest* MI of the three categories, higher than INTERIOR — plausibly an artifact of the histogram-based MI estimator on low-variance, near-zero signals (two quiet trajectories both sitting near a floor value can appear highly "coupled" under binned MI without genuine dynamic information transfer). This oddity does not undermine the central BOUNDARY vs. INTERIOR comparison, which is the direct test of the causal-insulation claim, but it means the three-way ordering should not be over-interpreted as a clean monotonic story.
 
+### 3.6 Extension: the same test on the Game-of-Life substrate (see `gol_substrate_extension/`)
+
+Every result above was built on Gray-Scott — a continuous-field substrate, separate from the discrete Game-of-Life substrate the rest of this project (Persistence, Exploitation/Adaptation, Loop Closure) actually runs on. A follow-up, documented in `gol_substrate_extension/`, ran the same ignition-threshold and causal-insulation methodology directly on Game of Life, closing that substrate gap. Summary: a real, sharp, monotonic ignition threshold (density ~0.05-0.08), and — restricted to the subset (~10%) of outcomes that retain genuine dynamic content after settling, since fully static remnants are trivially untestable — a clean, unanimous (8/8 seeds) causal-insulation result, cleaner in ordering than the Gray-Scott version. See that folder's README for full detail and scope limits.
+
 ## 4. What this establishes
 
 Across five stages, with one bug caught and corrected before results were trusted, and one internal caveat (background MI) surfaced rather than smoothed over:
@@ -90,10 +94,10 @@ This document reports results on **Axiom 1 only**, on **one substrate** (Gray-Sc
 
 Explicitly out of scope:
 
-- **Axioms 2 and 3 (Transformation, Persistence) as RGH frames them.** Gray-Scott's persistence here is simply "fixed local rule sustains a pattern" — the same well-established phenomenon Conway's Game of Life demonstrates (gliders, oscillators). This is real and relevant to T-to-P, but it is not new, and it says nothing about RGH's specific claim that persistence requires an *adaptive response* to an exploitation gradient.
-- **Exploitation/Adaptation (E/A).** Separately and extensively tested across five independent attempts (1D cellular automaton, 2D Game of Life, four distinct repair mechanisms), all of which either failed to show homeostasis or showed an effect in the wrong direction, or were traced to a selection-bias artifact upon proper controls. E/A remains unvalidated. Nothing in this document changes that status.
+- **Axioms 2 and 3 (Transformation, Persistence) as RGH frames them.** See the dedicated Axioms 2 & 3 findings document — the general phenomenon is well-supported, but RGH's active-filtering framing was tested and revised there; this document does not speak to that separately.
+- **Exploitation/Adaptation (E/A).** See the dedicated E/A findings document. As of this writing, E/A has one genuine, controlled positive result (learned cooperative strategy provides real resilience advantage under environmental stress, on a substrate with real thermodynamic stakes) reached only after five prior negative attempts. This document does not test E/A and should not be read as bearing on its status either way.
 - **The recursive loop.** RGH's core formula posits repeated composition (R^infinity) with reflexive self-modeling above a complexity threshold. This document tests a single instance of Distinction; it does not test recursion, self-modeling, or the bifurcation-threshold hypothesis discussed earlier in this project.
-- **Generalization beyond Gray-Scott.** Whether this finding holds on other reaction-diffusion systems, other pattern-forming substrates, or at other scales has not been tested.
+- **Generalization beyond Gray-Scott.** Partially addressed — see Section 3.6 and `gol_substrate_extension/`, which replicates the causal-insulation methodology on a second, discrete substrate (Game of Life) with a positive, if smaller-sample, result. Generalization to substrates beyond these two remains untested.
 
 ## 6. Suggested next steps, if continuing this line
 

@@ -14,11 +14,11 @@ This repo contains the actual code behind that paper's findings. Each folder bel
 
 | Component | Status |
 |---|---|
-| **Axiom 1 (Distinction)** | Supported |
+| **Axiom 1 (Distinction)** | Supported on Gray-Scott (causal insulation confirmed), and now replicated on the Game-of-Life substrate itself (8/8 seeds, unanimous direction) — see `axiom1-distinction/gol_substrate_extension/` |
 | **Axiom 2 (Transformation)** | Framework choice, not a finding |
 | **Axiom 3 (Persistence)** | General phenomenon supported (prior CA theory). Active-filtering, tried three ways, never showed a benefit from "smart" targeting. Reframed and resolved: persistence emerges as differential survival with *no* active operator at all — see folder README, Section 3.4. |
 | **Exploitation/Adaptation (E/A)** | Five nulls, then one controlled positive result under real thermodynamic stakes |
-| **Loop Closure (D→T→P→E/A, one pipeline)** | E/A layered on top of pure persistence sustains ~5x the population and ~2x the structural diversity, with no significant cost to robustness (n=15, paired t=10.2 and 4.5) — first cross-axiom result in this project |
+| **Loop Closure (D→T→P→E/A, one pipeline)** | Revised: the original "E/A adds complexity" result (5x population, 2x diversity) was largely an artifact of not separating Distinction from the metabolic collapse phase. Once corrected with a validated Distinction event, the effect collapses to statistical noise — see folder README for the full correction. |
 
 See the paper linked above for the full reasoning behind each line, or the individual folder READMEs for full experimental detail.
 
@@ -28,12 +28,16 @@ See the paper linked above for the full reasoning behind each line, or the indiv
 RGH_V1.3_Revised.md                  <- the full paper
 
 axiom1-distinction/
-  README.md                          <- full findings writeup
+  README.md                          <- includes reference to the GoL extension below
   stage1_grayscott.py                <- validated Gray-Scott substrate
   stage2_axiom1_test.py              <- ignition from uniform noise
   stage3_multiplicative_noise.py     <- noise-character test
   stage4_correlated_noise.py         <- spatial correlation test
-  stage5_causal_insulation.py        <- transfer-entropy boundary test
+  stage5_causal_insulation.py        <- transfer-entropy boundary test (Gray-Scott)
+  gol_substrate_extension/           <- closes the Gray-Scott/GoL substrate gap
+    README.md
+    stage1_ignition_sweep.py         <- GoL's own ignition threshold (cleaner than Gray-Scott's)
+    stage2_causal_insulation.py      <- same MI methodology, on GoL (8/8 seeds, unanimous)
 
 axioms2-3-transformation-persistence/
   README.md                          <- revised: full active-filter history + differential-survival resolution
@@ -55,8 +59,10 @@ axioms2-3-transformation-persistence/
     stage8_differential_survival.py  <- the key result: persistence with zero active operator
 
 loop-closure/
-  README.md                          <- first cross-axiom test: D (weak)->T->P->E/A in one pipeline
-  stage9_loop_closure.py              <- control (T+attrition) vs treatment (T+attrition+E/A)
+  README.md                          <- REVISED: original result + corrected follow-up test
+  stage9_loop_closure.py              <- original test (weak Distinction stand-in, superseded)
+  gol_distinction_ignition.py         <- validated GoL ignition, reused from axiom1-distinction
+  stage10_loop_closure_v2.py           <- corrected test (validated Distinction handoff)
   ea_stage3_memory_switching.py       <- reused, validated E/A mechanic
   stage6_component_memory.py          <- reused, validated component-size memory
   (+ shared dependency files, self-contained folder)
