@@ -18,6 +18,7 @@ This repo contains the actual code behind that paper's findings. Each folder bel
 | **Axiom 2 (Transformation)** | Framework choice, not a finding |
 | **Axiom 3 (Persistence)** | General phenomenon supported (prior CA theory). Active-filtering, tried three ways, never showed a benefit from "smart" targeting. Reframed and resolved: persistence emerges as differential survival with *no* active operator at all — see folder README, Section 3.4. |
 | **Exploitation/Adaptation (E/A)** | Five nulls, then one controlled positive result under real thermodynamic stakes |
+| **Loop Closure (D→T→P→E/A, one pipeline)** | E/A layered on top of pure persistence sustains ~5x the population and ~2x the structural diversity, with no significant cost to robustness (n=15, paired t=10.2 and 4.5) — first cross-axiom result in this project |
 
 See the paper linked above for the full reasoning behind each line, or the individual folder READMEs for full experimental detail.
 
@@ -52,6 +53,13 @@ axioms2-3-transformation-persistence/
     stage6_component_memory.py
     stage7_component_test.py
     stage8_differential_survival.py  <- the key result: persistence with zero active operator
+
+loop-closure/
+  README.md                          <- first cross-axiom test: D (weak)->T->P->E/A in one pipeline
+  stage9_loop_closure.py              <- control (T+attrition) vs treatment (T+attrition+E/A)
+  ea_stage3_memory_switching.py       <- reused, validated E/A mechanic
+  stage6_component_memory.py          <- reused, validated component-size memory
+  (+ shared dependency files, self-contained folder)
 
 ea-mutualism/
   README.md

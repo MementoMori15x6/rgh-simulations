@@ -68,7 +68,19 @@ There is something worth sitting with in this result beyond its narrow technical
 
 ---
 
-## 3. Central Philosophical Claim & Ultimate Implication
+## 3. Loop Closure: Testing the Axioms in Combination
+
+Every result reported above tested one axiom, or one narrow mechanism, in isolation, on whichever substrate suited that specific question. A separate test asked a different question: run a single, continuous pipeline — a stand-in for Distinction, followed by Transformation, followed by Persistence, with Exploitation/Adaptation layered on top — and ask whether combining them produces a measurable gain in sustained complexity beyond what Persistence alone achieves.
+
+This was deliberately scoped as a minimal test, not a search for a qualitatively novel structure. Structures at that higher tier (in Conway's Game of Life terms, self-sustaining generators of ever-increasing structure) are not known to emerge spontaneously from unstructured dynamics regardless of how many trials are run; every documented example was hand-constructed or found through long, deliberately directed search. The question tested was narrower: does Exploitation/Adaptation increase the *richness* of a population's structural composition, not whether it discovers something categorically new.
+
+**Empirical status:** Using the same validated substrate as the Exploitation/Adaptation and Persistence work, with a weak stand-in for Distinction (random seeding, not a repetition of the Gray-Scott causal-insulation result reported under Axiom 1), fifteen held-out trials compared pure Persistence-by-attrition against the identical substrate with the validated Exploitation/Adaptation mechanism active from the first step. The comparison, matched by seed: populations with Exploitation/Adaptation active sustained over five times the population of attrition alone (paired t = 10.2), and nearly double the structural diversity of the surviving population (paired t = 4.5), with no statistically significant cost to the population's average structural robustness. Layering Exploitation/Adaptation onto Persistence did not merely preserve what attrition alone produces — it measurably enriched it, in both scale and variety, in a single continuous run rather than as separate, disconnected experiments.
+
+This is not evidence of a jump to a qualitatively higher complexity tier — no such structure was observed or expected. It is evidence that a validated cooperative-adaptation mechanism can push a system toward a quantitatively richer regime than attrition alone reaches, demonstrated end-to-end across the axioms this framework treats as separate, rather than only as isolated claims about each on its own.
+
+---
+
+## 4. Central Philosophical Claim & Ultimate Implication
 
 The universe is not fundamentally composed of things, but of relationships capable of generating things. Matter, life, intelligence, and meaning are successive, emergent layers of a singular recursive engine.
 
