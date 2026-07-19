@@ -16,7 +16,7 @@ This repo contains the actual code behind that paper's findings. Each folder bel
 |---|---|
 | **Axiom 1 (Distinction)** | Supported |
 | **Axiom 2 (Transformation)** | Framework choice, not a finding |
-| **Axiom 3 (Persistence)** | General phenomenon supported (prior CA theory); active-filtering claim contradicted by first working test |
+| **Axiom 3 (Persistence)** | General phenomenon supported (prior CA theory). Active-filtering, tried three ways, never showed a benefit from "smart" targeting. Reframed and resolved: persistence emerges as differential survival with *no* active operator at all — see folder README, Section 3.4. |
 | **Exploitation/Adaptation (E/A)** | Five nulls, then one controlled positive result under real thermodynamic stakes |
 
 See the paper linked above for the full reasoning behind each line, or the individual folder READMEs for full experimental detail.
@@ -35,9 +35,23 @@ axiom1-distinction/
   stage5_causal_insulation.py        <- transfer-entropy boundary test
 
 axioms2-3-transformation-persistence/
-  README.md
+  README.md                          <- revised: full active-filter history + differential-survival resolution
   gol_substrate_validation.py        <- GoL sanity check (blinker, glider)
-  entropic_decay_lifespan_test.py    <- the first P-with-real-teeth test (negative result)
+  entropic_decay_lifespan_test.py    <- crude filter attempt (backfired, negative result)
+  smart_filter_attempt_bare_gol/     <- superseded design (local-signature, low-neighbor-count candidates)
+    vectorized_signature.py
+    stage1_fast.py
+    stage2_smart_filter_test.py
+  damage_repair_and_differential_survival/   <- the complete, final line of testing
+    stage1_energy_baseline.py
+    stage1_salvageability_memory.py
+    stage2_damage_repair.py
+    stage3_stress_test.py
+    stage4_triage.py
+    stage5_final_calibrated.py       <- the properly-powered (n=50) local-signature result
+    stage6_component_memory.py
+    stage7_component_test.py
+    stage8_differential_survival.py  <- the key result: persistence with zero active operator
 
 ea-mutualism/
   README.md
