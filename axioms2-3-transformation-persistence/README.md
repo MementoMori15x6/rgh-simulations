@@ -1,52 +1,67 @@
 # RGH Axioms 2 & 3 (Transformation, Persistence): Simulation Findings
 
-**Status: Preliminary. Not peer reviewed. Much narrower evidentiary basis than the Axiom 1 document -- see Section 4 for why.**
+**Status: Revised. Includes a substantive new result (differential survival) that changes the interpretation of Axiom 3, not just its evidentiary support. Not peer reviewed.**
 
 ---
 
 ## 1. Claims under test
 
-RGH's Axiom 2 (Transformation) asserts that local, computationally irreducible rules drive change in system state. Axiom 3 (Persistence) asserts that some configurations endure against entropy -- that the system filters for coherence rather than dissolving into noise.
+RGH's Axiom 2 (Transformation) asserts that local, computationally irreducible rules drive change in system state. Axiom 3 (Persistence) asserts that some configurations endure against entropy — that the system filters for coherence rather than dissolving into noise.
 
-This document is shorter and more modest than the Axiom 1 findings, for a specific reason stated up front: unlike Axiom 1, where we built and ran a dedicated five-stage test chain, Transformation and Persistence were mostly present as *scaffolding* underneath the Exploitation/Adaptation (E/A) experiments reported elsewhere in this project, not as things we set out to test in their own right. What follows distinguishes what is genuinely established (mostly from 80 years of prior Cellular Automata theory, not from our own novel work) from what our own simulations actually exercised.
+This document covers both, but the substantial content is in Persistence, where a genuine reframing occurred over the course of testing: early attempts treated Persistence as something requiring an *active operator* — a mechanism that inspects and intervenes on the system at each step. Later testing found this framing was likely wrong, and that Persistence is better understood as an *emergent statistical property* of running Transformation over time. That shift is the main finding reported here.
 
 ## 2. Transformation (Axiom 2): a framework choice, not a finding
 
-Across this entire project, "T" was instantiated twice:
+Unchanged from the prior version of this document. Transformation was instantiated as Rule 110 (1D) and Conway's Game of Life (2D), both standard, well-documented, correctly-implemented local update rules. "The system evolves under a fixed local rule" is true by construction of any cellular automaton and is not independently testable apart from choosing a rule and observing what it produces. What that produces — with respect to Persistence — is the substance of the rest of this document.
 
-- **Rule 110** (1D elementary cellular automaton) -- a fixed, well-documented, Turing-complete local update rule (Wolfram Class 4).
-- **Conway's Game of Life** (2D) -- a fixed, well-documented local update rule, validated in our own implementation against canonical patterns (blinker, glider) before any further work was built on it.
+## 3. Persistence (Axiom 3): three attempts at an active filter, then a reframe
 
-Both are real, standard, and correctly implemented in our simulations. But there is nothing to report as a *result* here: Transformation, as RGH frames it, is simply "the system evolves under a fixed local rule" -- this is true by construction of every cellular automaton ever built, ours included. Choosing Rule 110 or GoL's rule was a design decision, not an empirical discovery. We are not aware of a way to "test" Axiom 2 independent of picking a rule and observing what it does -- which is exactly what the rest of this project (and 80 years of CA research before it) already does.
+### 3.1 Persistence as a general phenomenon — well-established, not our finding
 
-## 3. Persistence (Axiom 3): well-supported in general, untested in RGH's specific sense
+Conway's Game of Life and Gray-Scott reaction-diffusion both demonstrate, as established prior science, that a fixed transformation rule alone is sufficient to produce enduring structure (gliders, blocks, stable spots), with no selective filter required. This was never in question; it predates RGH by decades.
 
-This is where a real distinction needs to be drawn between two different claims that could both be called "Persistence":
+### 3.2 First attempt: a crude active filter, and it backfired
 
-### 3.1 Persistence as a general phenomenon -- well-established, not our finding
+The original test built a persistence filter that deleted any live cell with fewer than 2 neighbors, on the theory that this scrubs noise. Measured against a 500-step metabolic-shock-style stress test, this filter **reduced** lifespan by roughly 2,800 steps relative to no filter at all (paired t ~ -7.0) — it deleted real, functioning structure (gliders routinely have transiently low neighbor counts as part of their normal translation cycle) along with actual noise.
 
-Conway's Game of Life is one of the most thoroughly studied persistence-generating systems in existence: gliders, blinkers, blocks, and beehives all demonstrate patterns that endure far beyond the specific initial configuration that produced them, sustained purely by a fixed transformation rule with no adaptive or selective mechanism layered on top. Gray-Scott's spots (see the Axiom 1 document) demonstrate the same thing in a continuous reaction-diffusion setting. Our own Stage 1 sanity checks in both the GoL and Gray-Scott work confirmed our implementations reproduce this documented behavior exactly.
+### 3.3 Second and third attempts: signature-based "smart" repair, on a substrate with genuine stakes
 
-**This genuinely supports T-to-P**: a fixed local rule alone, with no exploitation-detection or adaptive-response loop, is sufficient to produce enduring structure. This is real, but it is not new -- it is among the best-established facts in CA theory, predating RGH by decades.
+Reasoning that the crude filter failed only because it couldn't distinguish structure from noise, two more careful mechanisms were built on the validated energy-conservation Game-of-Life substrate (the same one used in the Exploitation/Adaptation work), where repair draws on a real, conserved energy budget rather than being a free action:
 
-### 3.2 Persistence as active filtering (RGH's actual framing) -- not empirically exercised
+- **Local-signature targeting**: a coherence memory, built from unperturbed baseline runs, scored each damaged cell's immediate 3x3 neighborhood pattern by how often matching patterns historically persisted. Repair was targeted at high-confidence signatures.
+- **Component-size targeting**: the same persistence criterion, but keyed on the size of the connected structure a damaged cell belonged to, rather than its immediate local pattern. This produced a much cleaner, more mechanistically legible signal -- confidence peaked sharply at component sizes 4-6 (0.57-0.75), corresponding to blocks and gliders, and fell to a stable floor (~0.2) for larger, more chaotic clusters.
 
-RGH's Axiom 3, as originally formulated, describes persistence as the system actively "filtering for coherent, enduring configurations against entropy" -- implying selection, not just brute endurance under a fixed rule. This is the stronger, more specific claim, and it is the one our own `P` function was written to test.
+Both were tested against a properly validated three-way control (no repair, random repair at matched rate, and repair guided by a **deliberately decorrelated** version of the same signal, verified via direct correlation checks rather than assumed). Both showed the same pattern, replicated at good statistical power (n=50, properly powered, confirmed via two-proportion tests):
 
-**Finding, stated plainly: across every simulation run in this entire project -- 1D and 2D, dozens of seeds, hundreds of individual runs -- our `P` function never once filtered anything out.** `P` was defined as "reject trivial (all-zero or all-one) states," present and checked at every timestep of every experiment, and it simply never fired: every run either survived to its configured step limit or died completely (full extinction), with no run landing in an intermediate "detected as incoherent, filtered before full extinction" state that would demonstrate active selection at work.
+- **Repair as a category is decisive.** No repair: 0% survival under stress, every time. Any repair mechanism -- smart, random, or even deliberately backwards -- survived at 55-70%.
+- **Targeting quality made no statistically significant difference.** Smart vs. random, smart vs. shuffled, random vs. shuffled -- every pairwise comparison came back non-significant (all z < 1.1, far below the 1.96 threshold), across both the local-signature and component-size versions, and across both an unconstrained-budget design and a genuine forced-triage design (budget capped well below the number of damaged cells, specifically to rule out "the choice never mattered because there wasn't a real choice being made").
 
-This means we have **zero empirical evidence, from our own work, that persistence-as-active-filtering (as opposed to persistence-as-brute-endurance-under-a-fixed-rule) is doing anything distinct.** It is possible that in these substrates, at these scales, "dies completely" and "everything else survives" are the only two real outcomes, with no meaningful middle ground for a filter to act on -- which would mean Axiom 3's stronger claim may not even be well-posed for a substrate this simple, rather than merely untested.
+This is a real, convergent, three-times-replicated result: **an active filter that intervenes and chooses -- however well-informed that choice is -- does not demonstrate the stabilizing benefit Axiom 3, in its "active filter" reading, predicts.** The category of intervention (repair vs. none) matters enormously; the intelligence of the intervention does not, in any design tested.
 
-## 4. Why this document is shorter and more cautious than the Axiom 1 document
+### 3.4 The reframe: persistence as differential survival, not active filtering
 
-The Axiom 1 findings were the product of a dedicated, five-stage chain built specifically to test that axiom, with real controls, bootstrap checks, and a positive result that survived scrutiny. Transformation and Persistence, by contrast, were never given that treatment -- they were assumed, used as infrastructure, and only examined in passing while building experiments aimed at E/A. This document reflects that difference in evidentiary effort honestly rather than manufacturing a comparable-looking result where none was actually pursued.
+The pattern across 3.2 and 3.3 -- active intervention either backfiring or not showing measurable benefit from being "smart" -- prompted a different question: does persistence require an active mechanism at all, or does it emerge simply from running Transformation over time, with no filter, no repair, and no intervention whatsoever?
+
+**Method**: the validated energy-conservation substrate was run with *zero* additional mechanism -- no filter, no repair, no invented damage -- from 15 held-out random-soup seeds (disjoint from the seeds used to build the independent persistence-confidence memory, to avoid circularity). At intervals, the population's live cells were scored using the *same* component-size confidence memory from 3.3 -- a measure of how often, historically, a structure of that size went on to persist -- and the population-weighted mean was tracked over 2,000 steps.
+
+**Result**: mean population confidence rose essentially monotonically, from 0.405 at the start (raw random soup) to a stable plateau of 0.657, reached and held from step ~1,550 onward, in **all 15 of 15 held-out seeds**, with zero extinctions. Population size fell from a mean of ~628 live cells to a stable ~15 over the same period.
+
+**Why this is a clean result, not a tautology**: the confidence score was not "how big is this structure now" -- it was "how often, across an entirely disjoint set of trajectories, did a structure of this size go on to persist." The population wasn't just shrinking and mechanically scoring higher by definition; historically fragile configurations (large, chaotic clusters, confidence ~0.2) were dying off while historically robust ones (blocks and gliders, confidence 0.57-0.75) were the ones still standing at the end. The final plateau value (0.657) sits precisely in the confidence range independently assigned to blocks and gliders -- and matches a well-documented phenomenon in Game of Life research generally: random soup reliably "settles" into a population dominated by still lifes, oscillators, and gliders. This test reproduced that known phenomenon using an independently-built, held-out statistical measure, without being told what to look for.
+
+## 4. What this means for RGH's formula
+
+The compact recursive formula treats Persistence (`P`) as a discrete operator in a composition chain -- something that acts on the system's state at each step, alongside `D`, `T`, `E`, `A`. Three separate, carefully-controlled attempts to build that operator either made things worse or showed no measurable advantage over unintelligent intervention. The one test that produced a clean, strong, fully-replicated (15/15 seeds) result was the one with **no operator at all** -- persistence emerged as a population-level statistic of ordinary attrition under Transformation.
+
+This suggests a specific, substantive revision to how RGH should model Persistence: not as a discrete filtering step in the composition chain, but as an emergent property that can be measured *after the fact* by observing which configurations a system's own dynamics leave behind over time. Whether this generalizes beyond the Game-of-Life substrate tested here, and whether it holds once Exploitation/Adaptation dynamics are layered on top (rather than the quiescent baseline used here), remain open.
 
 ## 5. What this does NOT establish
 
-- That RGH's specific, stronger version of Persistence (active filtering against entropy) is true or false -- it remains untested, not merely unconfirmed.
-- Anything about Exploitation/Adaptation, which is documented separately and remains at five nulls.
-- Anything about the recursive loop or reflexive self-modeling (`M`) -- out of scope here as in the Axiom 1 document.
+- That active persistence-filtering is impossible in general -- three specific designs failed to show a benefit; that is real, convergent evidence against those designs, not a proof that no active mechanism could ever work.
+- That differential survival generalizes beyond Conway's Game of Life or beyond the quiescent (undamaged, unstressed) condition tested here. The result was deliberately measured on the *baseline* dynamics, precisely to isolate whether Transformation alone is sufficient -- it has not yet been tested under ongoing stress or in combination with the Exploitation/Adaptation mechanisms documented separately.
+- Anything about the recursive loop, reflexive self-modeling (`M`), or the bifurcation-threshold hypothesis discussed earlier in this project -- out of scope here, as in the other findings documents.
 
-## 6. Suggested next step, if continuing this line
+## 6. Suggested next steps
 
-The one genuinely open, answerable question this document surfaces: **can `P` be made to discriminate at all**, in a substrate simple enough to reason about? A concrete test would be to construct or search for CA parameter regimes (in Rule-110-like 1D rules, or GoL-like 2D rules) that reliably produce a *third* outcome -- neither full extinction nor indefinite survival, but a detectable "coherent-but-eventually-collapsing" trajectory -- and check whether a `P`-like filter can be defined that meaningfully distinguishes these cases before they fully die out. Until that exists, Axiom 3's stronger claim has no empirical foothold in this project, positive or negative.
+1. Test whether the differential-survival trend holds under the same kind of stress (structural damage, energy drain) used in the active-filter tests -- does the population's mean confidence still rise, or does sustained damage overwhelm the passive selection effect?
+2. Test whether combining differential survival with the Exploitation/Adaptation mutualism mechanism changes the trend -- does a population that's also learning to cooperate show faster, slower, or different convergence toward high-persistence structure?
+3. If RGH's formula is revised to treat `P` as an emergent statistic rather than an operator, work out what that means concretely for the compact notation -- likely a reframing of `P` from an operation applied at each step to a property measured over a trajectory.
