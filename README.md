@@ -19,7 +19,7 @@ This repo contains the actual code behind that paper's findings. Each folder bel
 | **Axiom 3 (Persistence)** | General phenomenon supported (prior CA theory). Active-filtering, tried three ways, never showed a benefit from "smart" targeting. Reframed and resolved: persistence emerges as differential survival with *no* active operator at all — see folder README, Section 3.4. |
 | **Exploitation/Adaptation (E/A)** | Five nulls, then one controlled positive result under real thermodynamic stakes |
 | **Loop Closure (D→T→P→E/A, one pipeline)** | Revised: the original "E/A adds complexity" result (5x population, 2x diversity) was largely an artifact of not separating Distinction from the metabolic collapse phase. Once corrected with a validated Distinction event, the effect collapses to statistical noise — see folder README for the full correction. |
-| **Layer 0 (Entropic Substrate Hypothesis)** | New hypothesis. Structure requires genuine dissipative flux, not mere fluctuation — a clean 15-seed replication (paired t=769.5), refined into a sharper claim: dissipation is necessary but not sufficient, the system must also cross into a genuinely unstable (Turing) regime. Causal insulation confirmed at full strength, within the partial-dissipation unstable band, and under both dissipation-sourced and dissipation-independent ongoing noise. Extended to Persistence: a real asymmetry found — Distinction requires dissipation outright, Persistence-by-attrition does not (dissipation sharpens and accelerates it, but the drift toward stable configurations happens under the bare transformation rule alone). Summarized in the main paper, Section 4.1. |
+| **Layer 0 (Entropic Substrate Hypothesis)** | New hypothesis. Structure requires genuine dissipative flux, not mere fluctuation — a clean 15-seed replication (paired t=769.5), refined into a sharper claim: dissipation is necessary but not sufficient, the system must also cross into a genuinely unstable (Turing) regime. Causal insulation confirmed at full strength, within the partial-dissipation unstable band, and under both dissipation-sourced and dissipation-independent ongoing noise. Extended to Persistence: Distinction requires dissipation outright, Persistence-by-attrition does not (dissipation sharpens it, as a threshold not a gradient). Extended to Transformation via a genuinely different mechanism (Landauer-gated execution, energy gates whether a proposed transition can even happen): sustained energetic demand depends on whether a rule permits a "no transition needed" state to exist — Game of Life and Day & Night both find one and stop demanding energy; Brian's Brain (mandatory multi-step transitions) never does, rising to the model's own mathematical ceiling. All three axioms now tested. Summarized in the main paper, Section 4.1. |
 | **Heredity & Variation** | Real heredity (parent-average + mutation) was initially indistinguishable from random reassignment at every tested mutation size. A follow-up found this wasn't because heredity doesn't matter — very faithful heredity (low mutation) actually *underperforms* random reassignment under sudden stress (statistically real, z=-2.16). A well-powered (n=40) gradual-ramp test sharpened this into a bolder claim: even under slow, predictable change — where heredity should have the advantage — random reassignment still significantly beats it (z=-3.18), despite heredity genuinely, confirmedly tracking the change. Standing variation appears to dominate lineage-based tracking in both regimes tested, a real departure from the standard bet-hedging prediction. Summarized in the main paper, Section 4.2. |
 | **Parasitic Crucible** | New hypothesis. Naive replication plateaus without a real cost constraint (confirmed via a properly-controlled ablation test — caught and fixed a spatial-clustering confound along the way). A specific "helper contribution" mechanism, tuned into a narrow rate band (~0.025–0.05), produces genuine functional interdependency. Claim 2 (parasitic exploitability) tested three ways — spontaneous drift under two inheritance mechanisms, then a deliberate invasion test — and resolved into a genuine third answer: stable, bounded coexistence between contributors and free-riders, neither invasion nor elimination. Summarized in the main paper, Section 4.3. |
 
@@ -71,16 +71,17 @@ loop-closure/
   (+ shared dependency files, self-contained folder)
 
 layer0-entropic-substrate/
-  README.md                          <- dissipation requirement + noise-source resolution
-  stage1_basic_check.py               <- does structure need dissipation at all (yes)
-  stage2_full_mi_test.py              <- causal insulation MI test, generalized to any F,k
-  stage3_multiseed_replication.py     <- 15-seed replication (paired t=769.5)
-  stage4_dissipation_sweep.py         <- reveals the 3-regime dissipation picture
-  stage5_mi_partial_regime.py         <- confirms causal insulation within the unstable band
-  stage6_noise_source_control.py      <- dissipation-sourced vs independent ongoing noise
-  stage7_mi_noise_source.py           <- confirms causal insulation holds under both noise sources
-  stage9_persistence_dissipation_test.py  <- extends to Persistence: a real cross-axiom asymmetry
-  (+ shared Gray-Scott and energy-CA dependency files)
+  README.md                          <- Distinction + Persistence: dissipation requirement, noise-source resolution
+  distinction/                        <- Gray-Scott based (all Distinction tests)
+    stage1_basic_check.py, stage1_grayscott.py, stage2_full_mi_test.py,
+    stage3_multiseed_replication.py, stage4_correlated_noise.py, stage4_dissipation_sweep.py,
+    stage5_mi_partial_regime.py, stage6_noise_source_control.py, stage7_mi_noise_source.py
+  persistence/                        <- energy-CA based (Persistence extension)
+    stage1_salvageability_memory.py, stage6_component_memory.py,
+    stage8_differential_survival.py, stage9_persistence_dissipation_test.py, vectorized_signature.py
+  transformation/                     <- Landauer-gated execution (Transformation extension)
+    README.md                        <- three rejected rule candidates, then the real result
+    stage1_landauer_gate.py, stage2_chaotic_comparison.py, stage3_brians_brain.py
 
 heredity-variation/
   README.md                          <- bet-hedging reframe: variation matters, not lineage transmission
