@@ -19,6 +19,9 @@ This repo contains the actual code behind that paper's findings. Each folder bel
 | **Axiom 3 (Persistence)** | General phenomenon supported (prior CA theory). Active-filtering, tried three ways, never showed a benefit from "smart" targeting. Reframed and resolved: persistence emerges as differential survival with *no* active operator at all — see folder README, Section 3.4. |
 | **Exploitation/Adaptation (E/A)** | Five nulls, then one controlled positive result under real thermodynamic stakes |
 | **Loop Closure (D→T→P→E/A, one pipeline)** | Revised: the original "E/A adds complexity" result (5x population, 2x diversity) was largely an artifact of not separating Distinction from the metabolic collapse phase. Once corrected with a validated Distinction event, the effect collapses to statistical noise — see folder README for the full correction. |
+| **Layer 0 (Entropic Substrate Hypothesis)** | New hypothesis. Structure requires genuine dissipative flux, not mere fluctuation — a clean 15-seed replication (paired t=769.5), refined into a sharper claim: dissipation is necessary but not sufficient, the system must also cross into a genuinely unstable (Turing) regime. Causal insulation confirmed at full strength, within the partial-dissipation unstable band, and under both dissipation-sourced and dissipation-independent ongoing noise — noise source affects aggregate structure substantially but not the causal-insulation signature itself. Not yet part of the main paper. |
+| **Heredity & Variation** | Real heredity (parent-average + mutation) was initially indistinguishable from random reassignment at every tested mutation size. A follow-up found this wasn't because heredity doesn't matter — very faithful heredity (low mutation) actually *underperforms* random reassignment under sudden stress (statistically real, z=-2.16). A well-powered (n=40) gradual-ramp test sharpened this into a bolder claim: even under slow, predictable change — where heredity should have the advantage — random reassignment still significantly beats it (z=-3.18), despite heredity genuinely, confirmedly tracking the change. Standing variation appears to dominate lineage-based tracking in both regimes tested, a real departure from the standard bet-hedging prediction. |
+| **Parasitic Crucible** | New hypothesis. Naive replication plateaus without a real cost constraint (confirmed via a properly-controlled ablation test — caught and fixed a spatial-clustering confound along the way). A specific "helper contribution" mechanism, tuned into a narrow rate band (~0.025–0.05), produces genuine functional interdependency. Claim 2 (parasitic exploitability) tested three ways — spontaneous drift under two inheritance mechanisms, then a deliberate invasion test — and resolved into a genuine third answer: stable, bounded coexistence between contributors and free-riders, neither invasion nor elimination. Not yet part of the main paper. |
 
 See the paper linked above for the full reasoning behind each line, or the individual folder READMEs for full experimental detail.
 
@@ -66,6 +69,36 @@ loop-closure/
   ea_stage3_memory_switching.py       <- reused, validated E/A mechanic
   stage6_component_memory.py          <- reused, validated component-size memory
   (+ shared dependency files, self-contained folder)
+
+layer0-entropic-substrate/
+  README.md                          <- dissipation requirement + noise-source resolution
+  stage1_basic_check.py               <- does structure need dissipation at all (yes)
+  stage2_full_mi_test.py              <- causal insulation MI test, generalized to any F,k
+  stage3_multiseed_replication.py     <- 15-seed replication (paired t=769.5)
+  stage4_dissipation_sweep.py         <- reveals the 3-regime dissipation picture
+  stage5_mi_partial_regime.py         <- confirms causal insulation within the unstable band
+  stage6_noise_source_control.py      <- dissipation-sourced vs independent ongoing noise
+  stage7_mi_noise_source.py           <- confirms causal insulation holds under both noise sources
+  (+ shared Gray-Scott dependency files)
+
+heredity-variation/
+  README.md                          <- bet-hedging reframe: variation matters, not lineage transmission
+  stage1_heredity_mechanism.py        <- inheritable, mutating exploit/mutualism trait
+  stage2_heredity_stress_test.py      <- heritable vs fixed vs random-reassignment comparison
+  stage3_mutation_sweep.py            <- mutation-size sweep + parent-offspring correlation diagnostic
+  stage4_gradual_ramp.py              <- gradual ramp test: standing variation beats heredity even here
+  (+ shared energy-CA dependency files)
+
+parasitic-crucible/
+  README.md                          <- naive-plateau + Level 1 interdependency + resolved Claim 2 (stable coexistence)
+  stage1_naive_baseline.py            <- inert-trait baseline (Claim 1 control)
+  stage2_ablation_test.py             <- ablation methodology + the spatial-clustering confound catch/fix
+  stage3_contribution_mechanism.py    <- unilateral helper-contribution mechanism
+  stage4_contribution_ablation.py     <- confirms Level 1 interdependency, maps the rate sweet spot
+  stage5_long_run_drift.py            <- Claim 2: long-run trait stability (no spontaneous erosion)
+  stage6_single_parent.py             <- single-parent inheritance variant + spatial diversity check
+  stage7_invasion_test.py             <- deliberate invasion test: resolves into stable coexistence
+  (+ shared energy-CA dependency files)
 
 ea-mutualism/
   README.md
