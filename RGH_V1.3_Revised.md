@@ -2,7 +2,7 @@
 ### A Philosophical Framework for Emergent Reality, with Empirical Findings to Date
 D.H. Yoo | 2026
 
-*"A mind that seeks meaning, no matter how insignificant it seems to the grand scale, is a mind standing upon a universal structure that built this exact moment."*
+*"A mind that seeks meaning, no matter how insignificant it seems to the grand scale of things, is a mind standing upon a universal structure that was built to create that exact moment."*
 
 ---
 
@@ -69,6 +69,8 @@ Axiom 1 (Distinction) was already confirmed independently — a uniform medium, 
 The answer turned out to be exact. Take away a system's access to real thermodynamic flux — hold everything else constant, remove only the driving that keeps it away from equilibrium — and structure does not weaken. It vanishes, collapsing to something more featureless than the noise it started from. Restore that flux and, at a precise, identifiable threshold, the same structure reappears, growing and holding its shape across every one of fifteen independent trials (t = 769.5) with almost no variation between them. It is one of the cleanest results this project has produced.
 
 And then the substrate offered a correction we hadn't asked for: dissipation alone isn't enough. A system can be genuinely, actively dissipating energy and still settle into a uniform, structureless calm — dissipating, but not unstable, like a pot of water simmering evenly rather than boiling into turbulence. Only past a further, sharper threshold does the system tip into the specific kind of restlessness that lets boundaries form. Where they do form, we asked one more question: does it matter *where* the jostling comes from — noise tied to the system's own internal activity, or noise imposed on it from outside? It does not. The boundary's defining signature — that its interior talks to itself more than it talks across its own edge — holds steady either way (ΔMI = +0.033 versus +0.027). What matters is that the system is restless in the right way, not where the restlessness originates.
+
+We then asked whether Persistence pays the same bill. It does not, and the difference is itself the finding. Strip a population of the same real energetic cost and Distinction's structure had collapsed outright — but a population left to sort itself by nothing more than its own transformation rule still drifted toward the same handful of stable, enduring configurations, dissipation or no dissipation, arriving a little slower and settling a little more crowded, but arriving all the same. Give it back the energetic cost, and the sorting sharpens — a stricter toll that thins the crowd faster and leaves a sparser, more sharply-chosen remnant — but the toll was never the reason the sorting happened in the first place. Two axioms, tested the same way, gave two different answers. Distinction needs the furnace lit. Persistence was already finding its own way home.
 
 *Full method, code, and statistical detail: [`layer0-entropic-substrate/README.md`](layer0-entropic-substrate/README.md).*
 
